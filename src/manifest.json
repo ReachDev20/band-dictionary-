@@ -4,9 +4,8 @@
   "versionName": "1.0.0",
   "versionCode": 1,
   "minPlatformVersion": 1080,
-  "icon": "/pages/index/icon.png",
   "config": {
-    "logLevel": "off"
+    "logLevel": "debug"
   },
   "router": {
     "entry": "pages/index",
