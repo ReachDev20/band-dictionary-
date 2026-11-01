@@ -1,0 +1,12 @@
+{
+  "name": "band-english-dict",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "hap build",
+    "release": "hap release --no-sign"
+  },
+  "devDependencies": {
+    "@hap-toolkit/cli": "^0.6.15",
+    "@hap-toolkit/compiler": "^0.6.15"
+  }
+}
