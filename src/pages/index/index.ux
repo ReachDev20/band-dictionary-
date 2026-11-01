@@ -1,116 +1,102 @@
 <template>
-  <div class="container">
-    <list class="word-list" if="{{!selectedWord}}">
-      <list-item type="header" class="header-item">
-        <text class="title">English Lexicon</text>
-      </list-item>
+  <div class="page">
+    <div if="{{!selectedWord}}" class="list-wrapper">
+      <text class="heading">Lexicon</text>
+      <list class="word-list">
+        <list-item type="item" for="{{words}}" class="item-card" onclick="openWord($item)">
+          <text class="item-title">{{$item.word}}</text>
+          <text class="item-pos">{{$item.pos}}</text>
+        </list-item>
+      </list>
+    </div>
 
-      <list-item type="word-card" for="{{words}}" class="word-card" onclick="openWord($item)">
-        <text class="word-text">{{$item.word}}</text>
-        <text class="badge">{{$item.pos}}</text>
-      </list-item>
-    </list>
-
-    <div class="detail-view" else>
-      <text class="detail-word">{{selectedWord.word}}</text>
+    <div else class="detail-wrapper">
+      <text class="detail-title">{{selectedWord.word}}</text>
       <text class="detail-pos">{{selectedWord.pos}}</text>
-      <div class="divider"></div>
-      <scroll class="def-scroll">
-        <text class="detail-def">{{selectedWord.def}}</text>
-      </scroll>
-      
-      <input type="button" class="back-btn" value="Back to List" onclick="closeWord" />
+      <text class="detail-body">{{selectedWord.def}}</text>
+      <input type="button" class="btn" value="Back" onclick="closeWord" />
     </div>
   </div>
 </template>
 
 <style>
-  .container {
+  .page {
     width: 100%;
     height: 100%;
     background-color: #000000;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
   }
-  .header-item {
-    padding-top: 20px;
-    padding-bottom: 10px;
-    justify-content: center;
+  .list-wrapper {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 16px;
   }
-  .title {
+  .heading {
     color: #4CAF50;
     font-size: 24px;
     font-weight: bold;
-    text-align: center;
+    margin-bottom: 8px;
   }
   .word-list {
     width: 100%;
     height: 100%;
     flex-direction: column;
   }
-  .word-card {
+  .item-card {
     width: 90%;
     margin-left: 5%;
-    margin-bottom: 10px;
-    padding: 12px;
-    background-color: #1e1e1e;
-    border-radius: 16px;
+    margin-bottom: 8px;
+    padding: 10px;
+    background-color: #222222;
+    border-radius: 12px;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-  .word-text {
+  .item-title {
     color: #ffffff;
     font-size: 20px;
-    font-weight: bold;
   }
-  .badge {
+  .item-pos {
     color: #888888;
     font-size: 14px;
-    font-style: italic;
   }
-  .detail-view {
+  .detail-wrapper {
     width: 90%;
     height: 100%;
     flex-direction: column;
-    padding-top: 30px;
     align-items: center;
+    padding-top: 24px;
   }
-  .detail-word {
+  .detail-title {
     color: #4CAF50;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
-    text-align: center;
   }
   .detail-pos {
     color: #aaaaaa;
     font-size: 16px;
-    font-style: italic;
     margin-top: 4px;
+    margin-bottom: 12px;
   }
-  .divider {
-    width: 100%;
-    height: 2px;
-    background-color: #333333;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .def-scroll {
-    width: 100%;
-    height: 200px;
-  }
-  .detail-def {
+  .detail-body {
     color: #dddddd;
     font-size: 18px;
     line-height: 24px;
+    text-align: center;
+    margin-bottom: 16px;
   }
-  .back-btn {
-    width: 80%;
-    height: 44px;
+  .btn {
+    width: 120px;
+    height: 38px;
     background-color: #333333;
     color: #ffffff;
-    border-radius: 22px;
+    border-radius: 19px;
     font-size: 16px;
-    margin-top: 15px;
   }
 </style>
 
@@ -123,7 +109,7 @@
       selectedWord: null
     },
     onInit() {
-      this.words = dictionary.sort((a, b) => a.word.localeCompare(b.word));
+      this.words = dictionary;
     },
     openWord(item) {
       this.selectedWord = item;
