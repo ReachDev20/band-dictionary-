@@ -1,0 +1,135 @@
+<template>
+  <div class="container">
+    <list class="word-list" if="{{!selectedWord}}">
+      <list-item type="header" class="header-item">
+        <text class="title">English Lexicon</text>
+      </list-item>
+
+      <list-item type="word-card" for="{{words}}" class="word-card" onclick="openWord($item)">
+        <text class="word-text">{{$item.word}}</text>
+        <text class="badge">{{$item.pos}}</text>
+      </list-item>
+    </list>
+
+    <div class="detail-view" else>
+      <text class="detail-word">{{selectedWord.word}}</text>
+      <text class="detail-pos">{{selectedWord.pos}}</text>
+      <div class="divider"></div>
+      <scroll class="def-scroll">
+        <text class="detail-def">{{selectedWord.def}}</text>
+      </scroll>
+      
+      <input type="button" class="back-btn" value="Back to List" onclick="closeWord" />
+    </div>
+  </div>
+</template>
+
+<style>
+  .container {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header-item {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    justify-content: center;
+  }
+  .title {
+    color: #4CAF50;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .word-list {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+  .word-card {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    padding: 12px;
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .word-text {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .badge {
+    color: #888888;
+    font-size: 14px;
+    font-style: italic;
+  }
+  .detail-view {
+    width: 90%;
+    height: 100%;
+    flex-direction: column;
+    padding-top: 30px;
+    align-items: center;
+  }
+  .detail-word {
+    color: #4CAF50;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .detail-pos {
+    color: #aaaaaa;
+    font-size: 16px;
+    font-style: italic;
+    margin-top: 4px;
+  }
+  .divider {
+    width: 100%;
+    height: 2px;
+    background-color: #333333;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .def-scroll {
+    width: 100%;
+    height: 200px;
+  }
+  .detail-def {
+    color: #dddddd;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .back-btn {
+    width: 80%;
+    height: 44px;
+    background-color: #333333;
+    color: #ffffff;
+    border-radius: 22px;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+</style>
+
+<script>
+  import dictionary from '../../common/dictionary.json';
+
+  export default {
+    data: {
+      words: [],
+      selectedWord: null
+    },
+    onInit() {
+      this.words = dictionary.sort((a, b) => a.word.localeCompare(b.word));
+    },
+    openWord(item) {
+      this.selectedWord = item;
+    },
+    closeWord() {
+      this.selectedWord = null;
+    }
+  }
+</script>
