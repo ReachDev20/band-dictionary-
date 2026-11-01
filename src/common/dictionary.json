@@ -1,0 +1,22 @@
+[
+  {
+    "word": "Algorithm",
+    "pos": "noun",
+    "def": "A set of step-by-step rules or instructions to solve a problem."
+  },
+  {
+    "word": "Circumference",
+    "pos": "noun",
+    "def": "The enclosing boundary or distance around a circle (2 × π × r)."
+  },
+  {
+    "word": "Factorial",
+    "pos": "noun",
+    "def": "The product of an integer and all positive integers below it (n!)."
+  },
+  {
+    "word": "Velocity",
+    "pos": "noun",
+    "def": "The speed of an object in a specific direction."
+  }
+]
