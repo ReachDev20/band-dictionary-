@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "hap build",
-    "release": "hap release --no-sign"
+    "release": "hap build"
   },
   "devDependencies": {
     "hap-toolkit": "latest"
